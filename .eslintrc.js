@@ -29,5 +29,8 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'no-unused-vars': 'off',
+    'no-console': 0,
+    'default-param-last': 0,
   },
 };
