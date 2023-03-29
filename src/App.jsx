@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store';
 import history from './services/history';
 import GlobalStyle from './styles/GlobalStyles';
-import Header from './components/header';
+import Header from './components/Header';
 import Routes from './routes';
 
 function App() {
