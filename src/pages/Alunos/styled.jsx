@@ -1,10 +1,28 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  color: #b73a3a
+export const AlunoContainer = styled.div`
+  margin-top: 20px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+  }
+  div + div {
+    border-top: 1px dotted #b33232;
+  }
+
+  Link {
+    display: flex;
+    justify-items: center;
+  }
 `;
 
-export const Paragraph = styled.p`
-  font-size: 38px;
+export const ProfilePicture = styled.div`
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 `;

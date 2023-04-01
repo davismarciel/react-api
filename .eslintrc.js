@@ -32,5 +32,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-console': 0,
     'default-param-last': 0,
+    'no-shadow': 'off',
   },
 };
