@@ -15,11 +15,11 @@ export default createGlobalStyle`
     background: ${colors.primaryDarkColor};
     color: ${colors.primaryDarkColor};
   }
-
+  
   html, body, #root {
     height: 100%;
   }
-
+  
   button {
     cursor: pointer;
     border: none;
@@ -28,6 +28,11 @@ export default createGlobalStyle`
     padding: 10px 20px;
     border-radius: 4px;
     font-weight: 700;
+    transition: all 300ms;
+
+    &:hover {
+      filter: saturate(50%);
+    }
   }
   
   a {
