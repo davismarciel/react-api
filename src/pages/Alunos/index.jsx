@@ -12,14 +12,14 @@ export default function Alunos() {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get('/aluno');
+      const response = await axios.get('/alunos');
       setAluno(response.data);
     }
     getData();
   }, []);
   return (
     <Container>
-      <h1>Aluno</h1>
+      <h1>Alunos</h1>
       <AlunoContainer>
         {aluno.map((aluno) => (
           <div key={String(aluno.id)}>
@@ -34,11 +34,11 @@ export default function Alunos() {
             <span>{aluno.nome}</span>
             <span>{aluno.email}</span>
 
-            <Link to={`/aluno'${aluno.id}/edit`}>
+            <Link to={`/alunos/${aluno.id}/edit`}>
               <FaEdit size={16} />
             </Link>
 
-            <Link to={`/aluno'${aluno.id}/delete`}>
+            <Link to={`/alunos/${aluno.id}/delete`}>
               <FaWindowClose size={16} />
             </Link>
           </div>

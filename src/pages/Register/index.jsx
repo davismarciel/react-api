@@ -27,7 +27,7 @@ export default function Register() {
       formError = true;
       toast.error('Email inválido');
     }
-    if (password.length < 3 || password > 30) {
+    if (password.length < 3 || password.length > 30) {
       formError = true;
       toast.error('Senha deve ter entre 3 e 30 caracteres');
     }
