@@ -13,7 +13,7 @@ import * as actions from '../../store/modules/auth/actions';
 export default function Login(props) {
   const dispatch = useDispatch();
 
-  const prevPath = get(props, 'location.state.prevPath', 'home');
+  const prevPath = get(props, 'location.state.prevPath', '/');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

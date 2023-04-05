@@ -13,12 +13,12 @@ import PageError from '../pages/404';
 export default function Routes() {
   return (
     <Switch>
-      <MyRoute exact path="/" component={Alunos} isCLosed={false} />
-      <MyRoute exact path="/aluno/:id/edit" component={Aluno} isCLosed />
-      <MyRoute exact path="/aluno/" component={Aluno} isCLosed />
-      <MyRoute exact path="/fotos/:id" component={Fotos} isCLosed />
-      <MyRoute exact path="/login/" component={Login} isCLosed={false} />
-      <MyRoute exact path="/register/" component={Register} isCLosed={false} />
+      <MyRoute exact path="/" component={Alunos} isClosed={false} />
+      <MyRoute exact path="/aluno/:id/edit" component={Aluno} isClosed />
+      <MyRoute exact path="/aluno/" component={Aluno} isClosed />
+      <MyRoute exact path="/fotos/:id" component={Fotos} isClosed />
+      <MyRoute exact path="/login/" component={Login} isClosed={false} />
+      <MyRoute exact path="/register/" component={Register} isClosed={false} />
       <MyRoute path="*" component={PageError} />
     </Switch>
   );

@@ -3,8 +3,8 @@ import { get } from 'lodash';
 import { Toast } from '../../../preventToast';
 import * as actions from './actions';
 import * as types from '../types';
-import history from '../../../services/history';
 import axios from '../../../services/axios';
+import history from '../../../services/history';
 
 function* loginRequest({ payload }) {
   try {
@@ -22,7 +22,7 @@ function* loginRequest({ payload }) {
   }
 }
 
-function persistRehydrate(payload) {
+function persistRehydrate({ payload }) {
   const token = get(payload, 'auth.token', '');
   if (!token) return;
   axios.defaults.headers.Authorization = `Bearer ${token}`;

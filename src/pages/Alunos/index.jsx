@@ -34,12 +34,16 @@ export default function Alunos() {
             <span>{aluno.nome}</span>
             <span>{aluno.email}</span>
 
-            <Link to={`/alunos/${aluno.id}/edit`}>
-              <FaEdit size={16} />
+            <Link
+              className="edit"
+              to={`/aluno/${aluno.id}/edit`}
+              title="Editar"
+            >
+              <FaEdit size={23} />
             </Link>
 
-            <Link to={`/alunos/${aluno.id}/delete`}>
-              <FaWindowClose size={16} />
+            <Link to={`/aluno/${aluno.id}/delete`} title="Excluir">
+              <FaWindowClose size={23} />
             </Link>
           </div>
         ))}
