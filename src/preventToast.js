@@ -13,4 +13,4 @@ setInterval(() => {
   Object.keys(displayedToasts).forEach((message) => {
     delete displayedToasts[message];
   });
-}, 5000);
+}, 2000);
