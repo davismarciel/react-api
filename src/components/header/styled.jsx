@@ -14,3 +14,24 @@ export const Nav = styled.nav`
     font-weight: bold;
   }
 `;
+
+export const Online = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-left: 10px;
+  animation: pulse 2s infinite;
+  background-color: ${(props) => (props.online ? '#00FF00' : '#FF0000')};
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0.9);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.9);
+    }
+  }
+`;
