@@ -1,10 +1,17 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  color: #b73a3a
-`;
+export const Form = styled.form`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
-export const Paragraph = styled.p`
-  font-size: 38px;
+  input {
+    display: flex;
+    height: 40px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0 10px;
+  }
 `;

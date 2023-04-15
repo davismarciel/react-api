@@ -10,20 +10,20 @@ import {
 
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
-import { AlunoContainer, ProfilePicture } from './styled';
+import { AlunoContainer, ProfilePicture, NovoAluno } from './styled';
 import { Toast } from '../../preventToast';
-// import Loading from '../../components/Loading';
+import Loading from '../../components/Loading';
 
 export default function Alunos() {
   const [alunos, setAluno] = useState([]);
-  // // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      // setIsLoading(true);
+      setIsLoading(true);
       const response = await axios.get('/alunos');
       setAluno(response.data);
-      // setIsLoading(false);
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -38,12 +38,12 @@ export default function Alunos() {
   const handleDelete = async (e, id, index) => {
     e.persist();
     try {
-      // setIsLoading(true);
+      setIsLoading(true);
       await axios.delete(`/alunos/${id}`);
       const novosAlunos = [...alunos];
       novosAlunos.splice(index, 1);
       setAluno(novosAlunos);
-      // setIsLoading(false);
+      setIsLoading(false);
     } catch (err) {
       const status = get(err, 'response.status', 0);
       if (status === 401) {
@@ -51,14 +51,15 @@ export default function Alunos() {
       } else {
         Toast('Ocorreu um erro ao excluir um aluno', { type: 'error' });
       }
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <Container>
-      {/* <Loading isLoading={isLoading} /> */}
+      <Loading isLoading={isLoading} />
       <h1>Alunos</h1>
+      <NovoAluno to="/aluno/">Novo Aluno</NovoAluno>
       <AlunoContainer>
         {alunos.map((aluno) => (
           <div key={String(aluno.id)}>
