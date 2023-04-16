@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { get } from 'lodash';
 import { isEmail, isInt, isFloat } from 'validator';
 import PropTypes, { func, number } from 'prop-types';
@@ -9,6 +10,7 @@ import { Form } from './styled';
 import Loading from '../../components/Loading';
 import axios from '../../services/axios';
 import history from '../../services/history';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Aluno({ match }) {
   const id = get(match, 'params.id', 0);
@@ -20,6 +22,7 @@ export default function Aluno({ match }) {
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id) return;
@@ -50,22 +53,17 @@ export default function Aluno({ match }) {
     getData();
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let formErrors = false;
 
-    if (!nome || nome !== 'string' || nome.length < 3 || nome.length > 255) {
+    if (nome.length < 3 || nome.length > 255) {
       formErrors = true;
       Toast('Nome inválido', { type: 'error' });
     }
 
-    if (
-      !sobrenome ||
-      sobrenome !== 'string' ||
-      sobrenome.length < 2 ||
-      sobrenome.length > 255
-    ) {
+    if (sobrenome.length < 2 || sobrenome.length > 255) {
       formErrors = true;
       Toast('Sobrenome inválido', { type: 'error' });
     }
@@ -89,8 +87,46 @@ export default function Aluno({ match }) {
       Toast('Altura inválida', { type: 'error' });
     }
 
-    // eslint-disable-next-line no-useless-return
     if (formErrors) return;
+
+    try {
+      setIsLoading(true);
+      if (id) {
+        await axios.put(`/alunos/${id}`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        Toast('Aluno(a) editado(a)', { type: 'success' });
+      } else {
+        const { data } = await axios.post(`/alunos/`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        Toast('Aluno(a) criado(a) editado', { type: 'success' });
+        history.push(`/aluno/${data.id}/edit`);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      const status = get(error, 'response.status', 0);
+      const data = get(error, 'response.data', {});
+      const errors = get(error, 'response.data.errors', []);
+
+      if (errors.length > 0) {
+        errors.map((error) => Toast(error, { type: 'error' }));
+      } else {
+        Toast('Erro desconhecido', { type: 'error' });
+      }
+
+      if (status === 401) dispatch(actions.loginFailure());
+    }
   };
 
   return (

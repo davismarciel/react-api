@@ -34,5 +34,6 @@ module.exports = {
     'default-param-last': 0,
     'no-shadow': 'off',
     'react/jsx-no-bind': 0,
+    'no-useless-return': 0,
   },
 };
